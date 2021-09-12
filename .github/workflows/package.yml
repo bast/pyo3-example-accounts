@@ -1,4 +1,4 @@
-name: Package
+name: Publish wheels
 
 on:
   release:
@@ -10,26 +10,24 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        python-version: [3.6, 3.7, 3.8, 3.9]
         os: [ubuntu-latest, macOS-latest, windows-latest]
 
     steps:
-    - name: Switch branch
+    - name: Checkout
       uses: actions/checkout@v2
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v1
+    # - name: Build wheels
+    #   uses: messense/maturin-action@v1
+    #   with:
+    #     maturin-version: latest
+    #     manylinux: auto
+    #     command: build
+    #     args: --release
+    - name: Publish wheels
+      uses: messense/maturin-action@v1
       with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install Python dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-    - name: Build crate
-      run: cargo build --verbose
-#   - name: Test crate
-#     run: cargo test --verbose
-    - name: Maturin build and publish
-      run:
-        maturin publish --no-sdist -u __token__ -i python -r https://test.pypi.org/legacy/
+        maturin-version: latest
+        manylinux: auto
+        command: publish
+        args: --no-sdist -u __token__ -r https://test.pypi.org/legacy/
       env:
         MATURIN_PASSWORD: ${{ secrets.PYPI_TOKEN }}
