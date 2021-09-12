@@ -21,3 +21,8 @@ account2.withdraw(25.0)
 print("balance of account 1:", account1.get_balance())
 print("balance of account 2:", account2.get_balance())
 ```
+
+
+## Other notes
+
+- https://test.pypi.org/project/accounts/
