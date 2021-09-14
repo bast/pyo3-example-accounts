@@ -1,6 +1,6 @@
 # Example project to demonstrate interfacing Python and Rust
 
-[![License](https://img.shields.io/badge/license-%20MPL--v2.0-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/license-%20MIT-blue.svg)](LICENSE)
 
 First install from [test-PyPI](https://test.pypi.org/project/accounts/):
 ```
